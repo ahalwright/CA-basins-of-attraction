@@ -4,6 +4,8 @@
 
 #include("types.jl")
 
+export create_rule, apply_rule
+
 # Assumptions:  
 #   binary:  states are a bit string represented as an unsigned integer
 #   periodic boundary conditions
