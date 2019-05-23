@@ -160,15 +160,16 @@ function find_all_basins( n::Int64, w::Int64, R:: Int64 )
   (basin_counts,attractor_lengths)
 end
     
-# Not yet debugged.  
 function analyze_all_rules(n::Int64, w::Int64 )
-  len = n^w
-  result_df = DataFrame( rule=collect(1:len), basin_sizes=Vector{Int64}[Int64[] for i = 1:len], 
+  len = 2^2^n   # number of rules
+  result_df = DataFrame( rule=collect(0:(len-1)), basin_sizes=Vector{Int64}[Int64[] for i = 1:len], 
       attractor_lengths=Vector{Int64}[Int64[] for i = 1:len] )
-  for R = 1:n^2
+  for R = 0:len-1
+    println("R: ",R)
     basin_counts, attractor_lengths = find_all_basins( n, w, R)
-    push!(result_df[:basin_sizes][R],basin_counts)
-    push!(result_df[:attractor_lengths][R],attractor_lengths)
+    println("basin_counts: ",basin_counts,"  attractor_lengths: ",attractor_lengths)
+    result_df[:basin_sizes][R+1] = basin_counts
+    result_df[:attractor_lengths][R+1] = attractor_lengths
   end
   result_df
 end
