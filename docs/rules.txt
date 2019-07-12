@@ -1,0 +1,35 @@
+Example of rule, namely rule 30:
+See example 3 of Adams paper.
+
+Rule 30 has width 3.  Thus, it defines a function from a 3-bit state to a 1-bit state.
+These results correspond to the binary representation of 30 which is 0X1E = 00011110.
+The function is:
+000 -> 0
+001 -> 1
+010 -> 1
+011 -> 1
+100 -> 1
+101 -> 0
+110 -> 0
+111 -> 0
+
+This is represented the length 8=2^w array of states:
+[0x0000, 0x0001, 0x0001, 0x0001, 0x0001, 0x0000, 0x0000, 0x0000]
+
+
+nonCA rules:  (non cellular automata) rules
+  n=0 is a flag for such rules.
+  A rule is a function that takes every state to its successor state.
+  Thus, a rule in list format is an array r of STATEs such that for any state s,
+  r[s+1] is the successor to state s.  Note that s+1 is used because Julia arrays
+  are 1-based rather than 0-based.
+
+# Example of a nonCA rule for w=2 (array format)
+# r = [0x0003, 0x0002, 0x0001, 0x0000]  # flips bits
+# Thus, in binary notation: r[00]=11, r[01]=10, r[10]=01, r[11]=00.
+# In integer format, concatenate the components
+# R = 0xE4 = 11100100 (binary) = 228 (decimal)
+
+# A second example:  R = 108
+# r = [0x0001, 0x0002, 0x0003, 0x0000]  # cyclic
+
